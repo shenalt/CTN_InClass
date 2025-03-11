@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Basics</title>
+    <style>
+        *:not(code) {
+            font-family: sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <h1>Class 7: Use loops to calculate vote difference</h1>
+    <h2>Goal: Using loops, calculate the vote difference from 2020 to 2024 for each candidate, add to a new array, and <code>console.log()</code> them with a function. Should look something like this:</h2>
+    <code>Kamala Harris won Manhattan with 82.4% of the vote, about 65 points more than Donald Trump, who had 17.6%. Harris has 169,509 more votes than Biden in 2020.</code>
+    <h3>Things to keep in mind</h3>
+    <ul>
+        <li>You'll have to do some mathmatical calculations and <code>.push()</code> to add to the new array.</li>
+        <li>The function on line 84 should NOT be touched -- you'll need to write a loop to populate it with your new array.</li>
+        <li>Make sure your variables and props are spelled correctly!</li>
+
+    </ul>
+     <script>
+        //Votes 2024
+        const boroughs2024 = [
+            {
+                borough: "Manhattan",
+                trumpVotes2024: 113921,
+                harrisVotes2024: 533782
+            },
+            {
+                borough: "Bronx",
+                trumpVotes2024: 98174,
+                harrisVotes2024: 261670
+            },
+            {
+                borough: "Brooklyn",
+                trumpVotes2024: 233964,
+                harrisVotes2024: 601265
+            },
+            {
+                borough: "Queens",
+                trumpVotes2024: 264628,
+                harrisVotes2024: 437282
+            },
+            {
+                borough: "Staten Island",
+                trumpVotes2024: 128151,
+                harrisVotes2024: 69345
+            }
+        ];
+
+        //Votes 2020
+        const boroughs2020 = [
+            {
+                borough: "Manhattan",
+                trumpVotes2020: 84450,
+                bidenVotes2020: 364273
+            },
+            {
+                borough: "Bronx",
+                trumpVotes2020: 55882,
+                bidenVotes2020: 318403
+            },
+            {
+                borough: "Brooklyn",
+                trumpVotes2020: 133653,
+                bidenVotes2020: 487134
+            },
+            {
+                borough: "Queens",
+                trumpVotes2020: 155385,
+                bidenVotes2020: 422624
+            },
+            {
+                borough: "Staten Island",
+                trumpVotes2020: 96517,
+                bidenVotes2020: 67620
+            }
+        ];
+
+
+        function getPopularVote(borough, votesHarris2024, votesTrump2024, votesBiden2020, votesTrump2020, voteDifferenceTrump, voteDifferenceHarris){
+            
+            //calculates vote difference
+
+            const totalvotes = votesHarris2024 + votesTrump2024;
+            kamalaPercent = ((votesHarris2024 / totalvotes) * 100).toFixed(1);
+            trumpPercent = ((votesTrump2024 / totalvotes) * 100).toFixed(1);
+            margin = (kamalaPercent - trumpPercent).toFixed(0);
+
+            //prints messages based on songs
+
+            if (votesHarris2024 > votesTrump2024){
+
+                //if harris won by more votes than biden in 2020
+
+                if (votesHarris2024 > votesBiden2020) {
+                    console.log(`Kamala Harris won ${borough} with ${kamalaPercent}% of the vote, about ${margin} points more than Donald Trump, who had ${trumpPercent}%. Harris has ${voteDifferenceHarris.toLocaleString()} more votes than Biden in 2020`);
+                }
+                else {
+                    console.log(`Kamala Harris won ${borough} with ${kamalaPercent}% of the vote, about ${margin} points more than Donald Trump, who had ${trumpPercent}%. Harris has ${-voteDifferenceHarris.toLocaleString()} less votes than Biden in 2020`);
+                }
+            }
+            else { //if trump won
+
+                //if trump won by more votes than in 2020
+                if (votesTrump2024 > votesTrump2020) {
+                    console.log(`Donald Trump won ${borough} with ${trumpPercent}% of the vote, about ${margin} points more than Kamala Harris, who had ${kamalaPercent}%. Trump has ${voteDifferenceTrump.toLocaleString()} more votes than he did in 2020`);
+                }
+                else {
+                    console.log(`Donald Trump won ${borough} with ${trumpPercent}% of the vote, about ${margin} points more than Kamala Harris, who had ${kamalaPercent}%. Trump has ${voteDifferenceTrump.toLocaleString()} less votes than he did in 2020`);
+                }
+
+            }
+
+            
+        }
+
+        let nyc_boroughs = [];
+
+        for(let n = 0; n < 5; n++){
+            let empty = {};
+
+            let trump_2020 = 0;
+            let biden_2020 = 0;
+            
+            trump_2020 = boroughs2020[n];
+            trump_2024 = boroughs2024[n];
+
+            biden_2020 = boroughs2020[n];
+            harris_2024 = boroughs2024[n];
+
+            let trump_diff = trump_2020.trumpVotes2020 - trump_2024.trumpVotes2024
+            let dem_diff = biden_2020.bidenVotes2020 - harris_2024.harrisVotes2024
+            console.log(trump_diff)
+            console.log(dem_diff)
+        }
+
+
+        //make a loop that gets the vote difference from 2020 to 2024 for each candidate
+        
+            //make a blank object inside the loop
+
+            //calcuate the vote difference for each party
+
+            //assign the rest of the properties to the blank object
+
+            //add the object to nyc_boroughs
+
+
+        //write a loop that goes through nyc_boroughs and runs the function
+
+
+        
+    
+     </script>
+</body>
+</html>
